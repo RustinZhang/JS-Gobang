@@ -1,0 +1,648 @@
+// general styles
+table, tr, td, ul, li, p, progress
+    margin: 0
+    padding: 0
+
+ul
+    list-style: none
+
+html, body
+    position: relative
+    height: 100%
+    padding: 0
+    margin: 0 auto
+    color: #93874f
+    background: rgb(249, 243, 233)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
+.chess-board
+    position: absolute
+    border-collapse: collapse
+    outline: 2px solid
+    border: 1px solid
+    td
+        position: relative
+        border: 1px solid
+
+.chess-move
+    position: absolute
+    z-index: 2
+    ul
+        height: 6.666%
+    li
+        float: left
+        position: relative
+        width: 6.666%
+        height: 100%
+        //outline: 1px red solid
+        & :after
+            content: none
+            display: table
+            clear: both
+
+.stone-w
+    position: absolute
+    display: flex
+    justify-content: center
+    align-content: center
+    flex-direction: column
+    left: 7%
+    top: 7%
+    width: 86%
+    height: 86%
+    text-align: center
+    color: #333
+    background: radial-gradient(#fff 80%, #eee 100%)
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .5)
+    border-radius: 50%
+
+.stone-b
+    @extend .stone-w
+    color: #eee
+    background: radial-gradient(#000 30%, #111 50%, #222 80%, #333 100%)
+
+.shade
+    position: fixed
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: rgba(249, 243, 233, .7)
+    z-index: 999
+
+.dialog
+    position: relative
+    background: #fff
+    margin: 0 auto
+    background: rgba(255, 255, 255, .9)
+    border-radius: 4px
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, .5)
+
+.title
+    display: flex
+    justify-content: center
+    align-content: center
+    flex-direction: column
+    text-align: center
+
+.easy
+    position: absolute
+    box-sizing: border-box
+    width: 50%
+    bottom: 0
+    left: 0
+    color: #fff
+    text-align: center
+    background: #93874f
+    border-bottom-left-radius: 4px
+
+.normal
+    @extend .easy
+    left: 50%
+    background: #abe8fa
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 4px
+
+.end-shade
+    @extend .shade
+
+.end-window
+    position: relative
+    background: #fff
+    margin: 0 auto
+    background: rgba(255, 255, 255, .9)
+    border-radius: 4px
+    box-shadow: 1px 1px 2px rgba(255, 255, 255, .5)
+
+.message
+    display: flex
+    justify-content: center
+    align-content: center
+    flex-direction: column
+    text-align: center
+
+.review
+    position: absolute
+    box-sizing: border-box
+    width: 50%
+    bottom: 0
+    left: 0
+    color: #fff
+    text-align: center
+    background: #93874f
+    border-bottom-left-radius: 4px
+
+.new-game
+    @extend .review
+    left: 50%
+    background: #abe8fa
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 4px
+
+.new-step
+    outline: #c6c0a5 dotted
+
+.on-click
+    color: #fff
+    background: #93874f
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .5) inset !important
+
+// portrait phone and tablet
+@media only screen and (max-device-width: 1024px) and (orientation: portrait), only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)
+    html, body
+        width: 100vmin
+    
+    .head
+        position: relative
+        width: 100vmin
+        height: 7vmin
+        line-height: 7vmin
+        font-size: 5vmin
+        text-align: center
+    
+    .container
+        position: absolute
+        box-sizing: border-box
+        top: 15vmin
+        left: 0
+        width: 100vmin
+        height: 100vmin
+    
+    .chess-board
+        top: 3.333vmin
+        left: 3.333vmin
+        width: 93.75vmin
+        height: 93.75vmin
+    
+    .chess-move
+        top: 0
+        left: 0
+        width: 100vmin
+        height: 100vmin
+    
+    .stone-w .stone-b
+        font-size: 175%
+    
+    .dialog
+        width: 80vmin
+        height: 30vmin
+        top: 33vmax
+    .title
+        height: 20vmin
+        font-size: 2.8vmin
+    .easy
+        height: 10vmin
+        line-height: 10vmin
+        font-size: 3vmin
+    
+    .end-window
+        width: 80vmin
+        height: 30vmin
+        top: 33vmax
+    
+    .message
+        height: 20vmin
+        font-size: 2.8vmin
+    
+    .review
+        height: 10vmin
+        line-height: 10vmin
+        font-size: 3vmin
+    
+    .situation
+        position: absolute
+        left: 0
+        top: 7vmin
+        width: 100vmin
+        height: 10vmin
+        .indicator
+            position: absolute
+            box-sizing: border-box
+            right: 10vmin
+            height: 100%
+            width: 40%
+            text-align: right
+            padding-right: 1vmin
+            line-height: 10vmin
+            font-size: 5vmin
+            span
+                height: 5vmin
+                width: 5vmin
+                line-height: 10vmin
+                margin: 2vmin 8vmin 0 10vmin
+                box-shadow: none
+        progress.progress
+            display: none
+            position: absolute
+            top: 0
+            left: 0
+            width: 45%
+            height: 50%
+            margin: 0 0 0 3.5%
+        p.progress
+            position: absolute
+            bottom: 0
+            left: 0
+            width: 30%
+            height: 50%
+            padding-left: 3.5%
+            font-size: 2.8vmin
+    
+    .ctrl-panel
+        position: absolute
+        height: 10vmin
+        left: 0
+        top: 116vmin
+        width: 100vmin
+        li
+            text-align: center
+            width: 94%
+            height: 8vmin
+            line-height: 8vmin
+            margin: 4vmin 3% 0 3%
+            font-size: 3vmin
+            border: 1px solid
+            border-radius: 5vmin
+    
+    .on-click
+        color: #fff
+        background: #93874f
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .5) inset !important
+    
+    .author
+        position: absolute
+        width: 100vmin
+        top: 143vmin
+        font-size: 2.8vmin
+        margin: 2vmin 4vmin 1vmin 0
+        text-align: center
+        a
+            color: inherit
+
+@media only screen and (min-device-width: 1200px) and (min-aspect-ratio: 1/1)
+    html, body
+        width: 115vmin
+    
+    .head
+        position: absolute
+        right: 1vmin
+        top: 4.5vmin
+        width: 5vmin
+        height: 20vmin
+        font-size: 5.5vmin
+        text-align: center
+    
+    .container
+        position: absolute
+        box-sizing: border-box
+        left: 0
+        top: 0
+        width: 100vmin
+        height: 100vmin
+    
+    .chess-board
+        top: 4.5vmin
+        left: 4.5vmin
+        width: 91vmin
+        height: 91vmin
+    
+    .chess-move
+        top: 1.25vmin
+        left: 1.25vmin
+        width: 97.5vmin
+        height: 97.5vmin
+    
+    .dialog
+        width: 55vmin
+        height: 20vmin
+        top: 30vmin
+    .title
+        height: 14vmin
+        font-size: 2.6vmin
+    .easy
+        height: 5.5vmin
+        line-height: 5.5vmin
+        font-size: 2.6vmin
+        &:hover
+            cursor: pointer
+    
+    .end-window
+        width: 55vmin
+        height: 20vmin
+        top: 30vmin
+    
+    .message
+        height: 14vmin
+        font-size: 2.6vmin
+    
+    .review
+        height: 5.5vmin
+        line-height: 5.5vmin
+        font-size: 2.6vmin
+        &:hover
+            cursor: pointer
+    
+    .situation
+        position: absolute
+        top: 15vmin
+        right: 0
+        width: 15vmin
+        height: 30vmin
+        margin: 0
+        .indicator
+            position: absolute
+            right: 10vmin
+            width: 4vmin
+            text-align: center
+            padding-top: 6vmin
+            font-size: 3.6vmin
+            span
+                height: 3.5vmin
+                width: 3.5vmin
+                box-shadow: none
+        progress.progress
+            position: absolute
+            top: 30vmin
+            right: 1vmin
+            width: 98%
+        p.progress
+            position: absolute
+            right: 1vmin
+            width: 13vmin
+            top: 33vmin
+            font-size: 1.5vmin
+    
+    .ctrl-panel
+        position: absolute
+        height: 30vmin
+        right: 0
+        top: 55vmin
+        width: 10vmin
+        margin: 0 5%
+        li
+            float: left
+            text-align: center
+            font-size: 2.8vmin
+            margin: 4vmin 3vmin 3vmin 3vmin
+            padding: .8vmin 2vmin
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, .5)
+            &:hover
+                cursor: pointer
+    
+    .on-click
+        color: #fff
+        background: #93874f
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .5) inset !important
+    
+    .author
+        position: absolute
+        right: 0
+        bottom: 0
+        font-size: 1.2vmin
+        margin: 0 2vmin 1vmin 0
+        a
+            color: inherit
+
+@media screen and (min-device-width: 1200px) and (max-aspect-ratio: 1/1)
+    html, body
+        width: 100vmin
+    
+    .head
+        display: none
+    
+    .container
+        position: relative
+        box-sizing: border-box
+        top: 1.25vmin
+        margin: 0 auto
+        width: 90vmin
+        height: 90vmin
+    
+    .chess-board
+        top: 4.25vmin
+        left: 4.25vmin
+        width: 84vmin
+        height: 84vmin
+    
+    .chess-move
+        top: 1.25vmin
+        left: 1.25vmin
+        width: 90vmin
+        height: 90vmin
+    
+    .dialog
+        width: 55vmin
+        height: 20vmin
+        top: 30vmin
+    .title
+        height: 14vmin
+        font-size: 2.6vmin
+    .easy
+        height: 5.5vmin
+        line-height: 5.5vmin
+        font-size: 2.6vmin
+        &:hover
+            cursor: pointer
+    
+    .end-window
+        width: 55vmin
+        height: 20vmin
+        top: 30vmin
+    
+    .message
+        height: 14vmin
+        font-size: 2.6vmin
+    
+    .review
+        height: 5.5vmin
+        line-height: 5.5vmin
+        font-size: 2.6vmin
+        &:hover
+            cursor: pointer
+    
+    .situation
+        position: relative
+        top: 0
+        left: 0
+        width: 50vmin
+        height: 10vmin
+        margin-top: 3vmin
+        .indicator
+            width: 100%
+            text-align: left
+            padding-left: 30%
+            font-size: 3.5vmin
+            span
+                margin-left: 15%
+                width: 3.5vmin
+                height: 3.5vmin
+                box-shadow: none
+        progress.progress
+            width: 70%
+            margin-left: 20%
+        p.progress
+            font-size: 2vmin
+            margin-left: 20%
+    
+    .ctrl-panel
+        position: relative
+        height: 10vmin
+        left: 60vmin
+        top: -15vmin
+        width: 40vmin
+        margin-top: 3vmin
+        li
+            float: left
+            text-align: center
+            font-size: 2.8vmin
+            margin: 4vmin 3vmin 3vmin 3vmin
+            padding: .8vmin 2vmin
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, .5)
+            &:hover
+                cursor: pointer
+    
+    .on-click
+        color: #fff
+        background: #93874f
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .5) inset !important
+    
+    .author
+        position: absolute
+        width: 100vmin
+        text-align: center
+        top: 105vmin
+        font-size: 1.2vmin
+        a
+            color: inherit
+
+@media only screen and (max-device-width: 1024px) and (orientation: landscape), only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape)
+    html, body
+        width: 115vmin
+    
+    .head
+        position: absolute
+        right: 1vmin
+        top: 4.5vmin
+        width: 5vmin
+        height: 20vmin
+        font-size: 5.5vmin
+        text-align: center
+    
+    .container
+        position: absolute
+        box-sizing: border-box
+        left: 0
+        top: 0
+        width: 100vmin
+        height: 100vmin
+    
+    .chess-board
+        top: 4.5vmin
+        left: 4.5vmin
+        width: 91vmin
+        height: 91vmin
+    
+    .chess-move
+        top: 1.25vmin
+        left: 1.25vmin
+        width: 97.5vmin
+        height: 97.5vmin
+    
+    .dialog
+        width: 80vmin
+        height: 30vmin
+        top: 33vmin
+    .title
+        height: 20vmin
+        font-size: 2.8vmin
+    .easy
+        height: 10vmin
+        line-height: 10vmin
+        font-size: 3vmin
+        &:hover
+            cursor: pointer
+    
+    .end-window
+        width: 80vmin
+        height: 30vmin
+        top: 33vmin
+    
+    .message
+        height: 20vmin
+        font-size: 2.8vmin
+    
+    .review
+        height: 10vmin
+        line-height: 10vmin
+        font-size: 3vmin
+        &:hover
+            cursor: pointer
+    
+    .situation
+        position: absolute
+        top: 15vmin
+        right: 0
+        width: 15vmin
+        height: 30vmin
+        margin: 0
+        .indicator
+            position: absolute
+            right: 10vmin
+            width: 4vmin
+            text-align: center
+            padding-top: 6vmin
+            font-size: 3.6vmin
+            span
+                height: 3.5vmin
+                width: 3.5vmin
+                box-shadow: none
+        progress.progress
+            display: none
+            position: absolute
+            top: 30vmin
+            right: 1vmin
+            width: 98%
+        p.progress
+            position: absolute
+            right: 1vmin
+            width: 13vmin
+            top: 33vmin
+            font-size: 1.5vmin
+    
+    .ctrl-panel
+        position: absolute
+        height: 30vmin
+        right: 0
+        top: 55vmin
+        width: 10vmin
+        margin: 0 5%
+        li
+            position: absolute
+            top: 5vmin
+            left: -2vmin
+            text-align: center
+            font-size: 3vmin
+            width: 10vmin
+            height: 5vmin
+            line-height: 5vmin
+            margin: 4vmin 3vmin 3vmin 3vmin
+            padding: .8vmin 2vmin
+            border-radius: 4vmin
+            border: 1px solid
+            box-shadow: none !important
+            &:nth-of-type(2)
+                top: 18vmin
+    
+    .on-click
+        color: #fff
+        background: #93874f
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .5) inset !important
+    
+    .author
+        position: absolute
+        right: 0
+        bottom: 0
+        font-size: 1.2vmin
+        margin: 0 2vmin 1vmin 0
+        a
+            color: inherit

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Rustin Zhang">
+    <meta name="Keywords" content="gobang, js, 五子棋, Rustin Zhang, javascript">
+    <meta name="description" content="这是一个使用javascript写的网页版五子棋游戏，支持手机／iPad／电脑浏览器运行">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width">
+    <title>gobang</title>
+    <link rel="stylesheet" href="styles/gobang.css">
+</head>
+<body>
+<div class="head">五子棋</div>
+<div class="container">
+    <div class="chess-move"></div>
+    <table class="chess-board">
+        <tr class="row r0">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r1">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r2">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r3">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r4">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r5">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r6">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r7">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r8">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r9">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r10">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r11">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r12">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+        <tr class="row r13">
+            <td class="column col0"></td>
+            <td class="column col1"></td>
+            <td class="column col2"></td>
+            <td class="column col3"></td>
+            <td class="column col4"></td>
+            <td class="column col5"></td>
+            <td class="column col6"></td>
+            <td class="column col7"></td>
+            <td class="column col8"></td>
+            <td class="column col9"></td>
+            <td class="column col10"></td>
+            <td class="column col11"></td>
+            <td class="column col12"></td>
+            <td class="column col13"></td>
+        </tr>
+    </table>
+</div>
+<div class="situation">
+    <p class="indicator"><span class="stone-w"></span>电脑走棋</p>
+    <progress class="progress" value="0" max="100"></progress>
+    <p class="progress"><span class="progress"></span></p>
+</div>
+<div class="ctrl-panel">
+    <ul>
+        <li class="retract">悔棋</li>
+        <li class="restart">重来</li>
+    </ul>
+</div>
+<div class="author">
+    <p><a href="mailto:rustin.zhang@gmail.com">code by: @Rustin Zhang</a></p>
+    <p><a href="https://www.rustinz.com">My Home Page</a></p>
+</div>
+
+
+<script src="scripts/gobang.js"></script>
+
+</body>
+</html>
