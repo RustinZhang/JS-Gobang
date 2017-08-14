@@ -1,8 +1,9 @@
 /**
- * @fileOverview 这个模块提供了 Shifter 和 GUI 两个类，Shifter 类负责转换逻辑，GUI 负责玩家动作反馈
+ * @fileOverview 这个文件负责转换下棋方
  */
 'use strict';
 /**
+ * 下棋方转换模块，由 Shifter 和 GUI 两个类组成，Shifter 类负责转换逻辑，GUI 负责玩家动作反馈
  * @module shift_player
  * @see module: init
  * @see module: eval_function

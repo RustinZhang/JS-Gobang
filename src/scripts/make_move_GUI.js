@@ -3,6 +3,7 @@
  */
 'use strict';
 /**
+ * GUI模块，依赖初始化模块，下棋方切换模块。
  * @module make_move_GUI
  * @see module: init
  * @see module: shift_player

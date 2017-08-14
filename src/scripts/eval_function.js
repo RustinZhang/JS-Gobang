@@ -1,8 +1,9 @@
 /**
- * @fileOverview 估值核心模块，直接影响 AI 的智能程度。
+ * @fileOverview 估值核心，直接影响 AI 的智能程度。
  */
 'use strict';
 /**
+ * 估值核心模块，由 Eval 一个类构成，详见该类
  * @module eval_function
  */
 /**

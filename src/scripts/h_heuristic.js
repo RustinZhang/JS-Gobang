@@ -1,11 +1,13 @@
 /**
- * @fileOverview 历史启发模块 简言之在评估节点时，如果该节点引发剪枝，说明先评估该节点可能增加搜索效率，故增加其权重。越靠近根节点引发剪枝的，权重越高。历史启发不像杀手启发那样需要依赖棋类知识。
+ * @fileOverview 历史启发， 简言之在评估节点时，如果该节点引发剪枝，说明先评估该节点可能增加搜索效率，故增加其权重。越靠近根节点引发剪枝的，权重越高。历史启发不像杀手启发那样需要依赖棋类知识。
  */
 'use strict';
 /**
+ * 历史启发模块，由 H_Heuristic 一个类构成，详见该类
  * @module h_heuristic
  */
 /**
+ * 历史启发类
  * @see <a href="https://chessprogramming.wikispaces.com/History+Heuristic">History Heuristic</a>
  */
 class H_Heuristic {

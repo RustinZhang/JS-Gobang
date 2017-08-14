@@ -1,8 +1,8 @@
 /**
- * @fileOverview AI的主模块，依赖历史启发模块、置换表模块、走法生成模块和评估核心模块。接收主进程传递的数据后启动搜索函数，返回最佳走法和得分给主进程
+ * @fileOverview AI的模块联结文件
  */
 /**
- * Web Worker
+ * Web Worker 这个类主要由一个搜索函数组成，依赖历史启发、置换表、走法生成、估值核心几个模块
  * @module AI_worker
  * @see module: h_heuristic
  * @see module: t_table

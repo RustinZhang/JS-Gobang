@@ -4,13 +4,16 @@
  */
 'use strict';
 /**
+ * 初始化模块，由 Init 一个类构成，详见该类
  * @module init
  */
 /**
  * 初始化棋盘，开局DOM结构建立
  */
 class Init {
-    // 选棋遮罩，DOM棋盘绘制
+    /**
+     * 选棋遮罩，DOM棋盘绘制
+     */
     static drawUI() {
         let grid = '',
         shade = document.createElement( 'div' ),
@@ -29,7 +32,10 @@ class Init {
         chess_move.innerHTML = grid;
     }
 
-    // 抽象棋盘建立
+    /**
+     * 抽象棋盘建立
+     * @returns {Array} 抽象棋盘
+     */
     static chessBoard() {
         let board = [];
         for ( let i = 15; i--; ) {

@@ -1,8 +1,9 @@
 /**
- * @fileOverview 走法生成模块，在启动搜索后负责生成、撤销棋子。
+ * @fileOverview 在启动搜索后负责生成、撤销棋子。
  */
 'use strict';
 /**
+ * 走法生成模块，由 MoveGenerator 一个类构成，详见该类
  * @module move_generator
  */
 /**
