@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: h_heuristic.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: h_heuristic.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileOverview 历史启发， 简言之在评估节点时，如果该节点引发剪枝，说明先评估该节点可能增加搜索效率，故增加其权重。越靠近根节点引发剪枝的，权重越高。历史启发不像杀手启发那样需要依赖棋类知识。
+ */
+'use strict';
+/**
+ * 历史启发模块，由 H_Heuristic 一个类构成，详见该类
+ * @module h_heuristic
+ */
+/**
+ * 历史启发类
+ * @see &lt;a href="https://chessprogramming.wikispaces.com/History+Heuristic">History Heuristic&lt;/a>
+ */
+class H_Heuristic {
+    constructor() {
+        /**
+         * @type {Array}
+         */
+        this.history_score = [];
+        /**
+         * @type {Array}
+         */
+        this.m_TargetBuff = [];
+    }
+
+    /**
+     * 清除历史得分
+     */
+    clearHistoryScore() {
+        for ( let i = 0; i &lt; 15; i++ ) {
+            if ( !this.history_score[ i ] )
+                this.history_score.push( Array.from( { length: 15 } ) );
+            for ( let j = 0; j &lt; 15; j++ ) {
+                this.history_score[ i ][ j ] = 0;
+            }
+        }
+    }
+
+    /**
+     * 增加历史得分记录
+     */
+    enterHistoryScore( pos, depth ) {
+        this.history_score[ pos[ 0 ] ][ pos[ 1 ] ] += Math.pow( 2, depth );
+    }
+
+    /**
+     * 获取历史得分
+     * @param pos {Array}
+     */
+    getHistoryScore( pos ) {
+        return this.history_score[ pos[ 0 ] ][ pos[ 1 ] ];
+    }
+
+    // 以下几个函数排序用，采用的是归并排序 mergeSort 供外部调用，实际上棋盘上一共才225个位置，而且限定了走法范围，排序数组远小于这个规模，冒泡排序问题不大，看到有资料用这个，用来试试
+    static mergeAZ( source, target, l, m, r ) {
+        let i = l,
+        j = m + 1,
+        k = l;
+        while ( (i &lt;= m) &amp;&amp; (j &lt;= r) ) {
+            if ( source[ i ].score &lt;= source[ j ].score ) {
+                target[ k++ ] = source[ i++ ];
+            }
+            else {
+                target[ k++ ] = source[ j++ ];
+            }
+        }
+        if ( i > m ) {
+            for ( let q = j; q &lt;= r; q++ ) {
+                target[ k++ ] = source[ q ];
+            }
+        }
+        else {
+            for ( let q = i; q &lt;= m; q++ ) {
+                target[ k++ ] = source[ q ];
+            }
+        }
+    }
+
+    static mergeZA( source, target, l, m, r ) {
+        let i = l,
+        j = m + 1,
+        k = l;
+        while ( (i &lt;= m) &amp;&amp; (j &lt;= r) ) {
+            if ( source[ i ].score >= source[ j ].score ) {
+                target[ k++ ] = source[ i++ ];
+            }
+            else {
+                target[ k++ ] = source[ j++ ];
+            }
+        }
+        if ( i > m ) {
+            for ( let q = j; q &lt;= r; q++ ) {
+                target[ k++ ] = source[ q ];
+            }
+        }
+        else {
+            for ( let q = i; q &lt;= m; q++ ) {
+                target[ k++ ] = source[ q ];
+            }
+        }
+    }
+
+    static mergePass( source, target, s, n, direction ) {
+        let i = 0;
+        while ( i &lt;= n - 2 * s ) {
+            if ( direction ) {
+                this.mergeAZ( source, target, i, i + s - 1, i + 2 * s - 1 );
+            }
+            else {
+                this.mergeZA( source, target, i, i + s - 1, i + 2 * s - 1 );
+            }
+            i = i + 2 * s;
+        }
+        if ( i + s &lt; n ) {
+            if ( direction ) {
+                this.mergeAZ( source, target, i, i + s - 1, n - 1 );
+            }
+            else {
+                this.mergeZA( source, target, i, i + s - 1, n - 1 );
+            }
+        }
+        else {
+            for ( let j = i; j &lt;= n - 1; j++ ) {
+                target[ j ] = source[ j ];
+            }
+        }
+    }
+
+    /**
+     * 供调用的排序API
+     * @param source
+     * @param n
+     * @param direction
+     */
+    mergeSort( source, n, direction ) {
+        let s = 1;
+        while ( s &lt; n ) {
+            H_Heuristic.mergePass( source, this.m_TargetBuff, s, n, direction );
+            s += s;
+            H_Heuristic.mergePass( this.m_TargetBuff, source, s, n, direction );
+            s += s;
+        }
+    }
+}
+/**
+ * @type {H_Heuristic}
+ */
+export let h_heuristic = new H_Heuristic();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AI_worker.html">AI_worker</a></li><li><a href="module-eval_function.html">eval_function</a></li><li><a href="module-h_heuristic.html">h_heuristic</a></li><li><a href="module-init.html">init</a></li><li><a href="module-make_move_GUI.html">make_move_GUI</a></li><li><a href="module-move_generator.html">move_generator</a></li><li><a href="module-shift_player.html">shift_player</a></li><li><a href="module-t_table.html">t_table</a></li></ul><h3>Classes</h3><ul><li><a href="module-eval_function-Eval.html">Eval</a></li><li><a href="module-h_heuristic-H_Heuristic.html">H_Heuristic</a></li><li><a href="module-init-Init.html">Init</a></li><li><a href="module-move_generator-MoveGenerator.html">MoveGenerator</a></li><li><a href="module-shift_player-GUI.html">GUI</a></li><li><a href="module-shift_player-Shifter.html">Shifter</a></li><li><a href="module-t_table-T_Table.html">T_Table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Mon Aug 14 2017 12:49:55 GMT+0800 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a pure js gobang game",
   "main": "dist/index.html",
+  "repositories": "https://github.com/RustinZhang/JS-Gobang",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
